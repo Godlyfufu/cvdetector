@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cardiovascular Health Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #b8c6db;
+            background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 0 auto;
+            width: 80%; /* Adjust the width as needed */
+        }
+
+        .form-container {
+            width: 45%; /* Adjust the width as needed */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .results-container {
+            width: 45%; /* Adjust the width as needed */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cardiovascular Health Prediction</h1>
+    <div class="flex-container">
+        <div class="form-container">
+            <form method="post" action="/predict">
+                <label for="age">Age:</label>
+                <input type="number" name="age" required><br>
+
+                <label for="gender">Gender:</label>
+                <select name="gender" required>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select><br>
+
+                <label for="chest_pain">Chest Pain Type:</label>
+                <select name="chest_pain" required>
+                    <option value="TA">Typical Angina</option>
+                    <option value="ATA">Atypical Angina</option>
+                    <option value="NAP">Non-Anginal Pain</option>
+                    <option value="ASY">Asymptomatic</option>
+                </select><br>
+
+                <label for="resting_BP">Resting Blood Pressure (mmHg):</label>
+                <input type="number" name="resting_BP" required><br>
+
+                <label for="cholesterol">Cholesterol (mg/dL):</label>
+                <input type="number" name="cholesterol" required><br>
+
+                <label for="fasting_BS">Fasting Blood Sugar (mg/dL):</label>
+                <input type="number" name="fasting_BS" required><br>
+
+                <label for="resting_ECG">Resting ECG Results:</label>
+                <select name="resting_ECG" required>
+                    <option value="Normal">Normal</option>
+                    <option value="ST">ST-T wave abnormality</option>
+                    <option value="LVH">Left ventricular hypertrophy</option>
+                </select><br>
+
+                <label for="max_HR">Maximum Heart Rate:</label>
+                <input type="number" name="max_HR" required><br>
+
+                <label for="exercise_angina">Exercise-induced Angina:</label>
+                <select name="exercise_angina" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select><br>
+
+                <label for="old_peak">Oldpeak (ST depression):</label>
+                <input type="number" name="old_peak" required><br>
+
+                <label for="ST_slope">ST Slope:</label>
+                <select name="ST_slope" required>
+                    <option value="Up">Upsloping</option>
+                    <option value="Flat">Flat</option>
+                    <option value="Down">Downsloping</option>
+                </select><br>
+
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+
+        <div class="results-container">
+            <h2>Prediction Result:</h2>
+            <p>{{ prediction_result }}</p>
+            <h2>Prediction Score:</h2>
+            <p>{{ prediction_score }}</p>
+        </div>
+    </div>
+</body>
+</html>
